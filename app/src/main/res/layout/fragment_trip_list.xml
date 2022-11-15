@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/cmp_wrapper"
+	android:backgroundTint="@color/transparent"
+	tools:context=".ui.trip.list.TripListFragment"
+	tools:ignore="HardcodedText">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/search_form"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<expense.money.octo.views.Input
+				android:id="@+id/input_trip_list_filter"
+				android:layout_width="0dp"
+				android:layout_height="50dp"
+				android:layout_marginEnd="15dp"
+				android:hint="Filter"
+				android:textSize="15sp"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toLeftOf="@+id/button_trip_list_search"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<expense.money.octo.views.button.IconButton
+				android:id="@+id/button_trip_list_search"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_marginEnd="10dp"
+				android:contentDescription="search button"
+				app:icon="?android:attr/actionModeWebSearchDrawable"
+				app:layout_constraintEnd_toStartOf="@+id/button_trip_list_reset_search"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<expense.money.octo.views.button.IconButton
+				android:id="@+id/button_trip_list_reset_search"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:contentDescription="search button"
+				app:icon="@drawable/ic_restart"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="@dimen/margin"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/search_form">
+
+			<TextView
+				android:id="@+id/trip_list_empty_notice_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="15dp"
+				android:padding="5dp"
+				android:text="There is no trips"
+				android:textAlignment="center"
+				android:textSize="15sp"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/listview_trip_list_trips"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginTop="15dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<Preference
+		app:iconSpaceReserved="false"
+		app:key="@string/preference_backup_key"
+		app:summary="Lorem ipsum dolor sit amet"
+		app:title="Back up resima" />
+	<Preference
+		app:iconSpaceReserved="false"
+		app:key="@string/preference_reset_key"
+		app:summary="Lorem ipsum dolor sit amet consectetur"
+		app:title="Reset resima" />
+	<Preference
+		app:iconSpaceReserved="false"
+		app:key="@string/preference_dark_mode_key"
+		app:summary="Praesent quis porttitor dui. Integer est est, ullamcorper eget vehicula in, tempus at mauris. Nulla condimentum fermentum vulputate. In tempus augue ante, mollis hendrerit quam congue eget."
+		app:title="Dark mode" />
+	<Preference
+		app:iconSpaceReserved="false"
+		app:key="@string/preference_about_us_key"
+		app:summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+		app:title="About us" />
+</PreferenceScreen>
