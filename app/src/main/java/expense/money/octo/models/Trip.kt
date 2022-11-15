@@ -10,4 +10,6 @@ data class Trip(
 	var riskAssessmentRequired: Boolean = false,
 	var createdDate: String? = getCurrentDateString(withTime = false),
 	var description: String = "",
-) : java.io.Serializable
+) : java.io.Serializable{
+	override fun toString() = "$name,$dateOfTrip,$destination"
+}

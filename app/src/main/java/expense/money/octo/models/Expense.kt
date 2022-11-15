@@ -10,4 +10,6 @@ data class Expense(
 	var comment: String? = null,
 	var amount: Int = 0,
 	var tripId: Long = -1,
-) : java.io.Serializable
+) : java.io.Serializable {
+	override fun toString() = "$type,$dateSpent"
+}
