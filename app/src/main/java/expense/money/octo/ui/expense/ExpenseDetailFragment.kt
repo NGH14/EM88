@@ -32,6 +32,7 @@ class ExpenseDetailFragment(private val expenseId: Long) :
 		btn_expense_detail_edit_toggle.setOnClickListener { toggleEditMode() }
 
 		setTypeAdapter()
+		setCurrencyAdapter()
 		setInfoDetails(expenseId)
 	}
 
@@ -66,9 +67,10 @@ class ExpenseDetailFragment(private val expenseId: Long) :
 
 	private fun updateExpense() {
 		with(expenseDetail!!) {
-			type = ExpenseType.valueOf(dropdown_expense_detail_edit_type.text.toString())
+			type = ExpenseType.get(dropdown_expense_detail_edit_type.text.toString())
 			dateSpent = text_expense_detail_edit_date_spent.text
 			comment = text_expense_detail_edit_comment.text
+			currency = dropdown_expense_currency_detail.text.toString()
 			amount = text_expense_detail_edit_amount.text?.toInt() ?: 0
 		}
 
@@ -89,6 +91,17 @@ class ExpenseDetailFragment(private val expenseId: Long) :
 		dropdown_expense_detail_edit_type.setAdapter(adapter)
 	}
 
+	private fun setCurrencyAdapter() {
+		val adapter = ArrayAdapter.createFromResource(
+			requireContext(),
+			R.array.expense_currency,
+			android.R.layout.simple_spinner_item
+		)
+
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+		dropdown_expense_currency_detail.setAdapter(adapter)
+	}
+
 	private fun setInfoDetails(id: Long? = null) {
 		val errorMessage = getString(R.string.error_not_found)
 		expenseDetail = if (id != null) db.getExpenseById(id) else expenseDetail
@@ -97,7 +110,8 @@ class ExpenseDetailFragment(private val expenseId: Long) :
 			tv.text = if (expenseDetail == null || value == null) errorMessage else value
 		}
 
-		setValue(expense_detail_type, expenseDetail?.type?.toString())
+		setValue(expense_detail_type, expenseDetail?.type?.type)
+		setValue(expense_detail_currency, expenseDetail?.currency)
 		setValue(expense_detail_amount, expenseDetail?.amount?.toString())
 		setValue(expense_detail_created_date, expenseDetail?.createdDate)
 		setValue(expense_detail_date_spent, expenseDetail?.dateSpent)
@@ -106,7 +120,9 @@ class ExpenseDetailFragment(private val expenseId: Long) :
 
 	private fun setEditDetails() {
 		(expenseDetail ?: Expense()).run {
-			dropdown_expense_detail_edit_type.setText(type.toString())
+			dropdown_expense_detail_edit_type.setText(type.type)
+			dropdown_expense_currency_detail.setText(currency.toString())
+
 			text_expense_detail_edit_amount.text = amount.toString()
 			text_expense_detail_edit_date_spent.text = dateSpent
 			text_expense_detail_edit_comment.text = comment

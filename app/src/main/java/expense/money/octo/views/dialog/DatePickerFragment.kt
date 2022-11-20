@@ -22,20 +22,11 @@ class DatePickerFragment : DialogFragment(R.layout.fragment_date_picker), OnDate
 	}
 
 	override fun onDateSet(datePicker: DatePicker, year: Int, month: Int, day: Int) {
-		/** DEBUG
-		 * old: ++month
-		 * remarks: idk why the old code can modify lambda parameter (month)
-		 */
 		val theMonthAfter = month + 1
-		val date = """
-			${if (day < 10) "0$day" else day}/
-			${if (theMonthAfter < 10) "0$theMonthAfter" else theMonthAfter}/
-			$year
-		""".trimIndent()
-			.trimMargin()
-			.replace("\n", "")
+		val date = "${if (day < 10) "0$day" else day}/" +
+			"${if (theMonthAfter < 10) "0$theMonthAfter" else theMonthAfter}/" +
+			year
 
-		// listener
 		(parentFragment as FragmentListener?)?.sendFromDatePickerFragment(date)
 		dismiss()
 	}

@@ -22,12 +22,7 @@ class TimePickerFragment : DialogFragment(R.layout.fragment_time_picker), OnTime
 	}
 
 	override fun onTimeSet(timePicker: TimePicker, hour: Int, minute: Int) {
-		val time = """
-			${if (hour < 10) "0$hour" else hour}:
-			${if (minute < 10) "0$minute" else minute}
-		""".trimIndent()
-			.trimMargin()
-			.replace("\n", "")
+		val time = "${if (hour < 10) "0$hour" else hour}:${if (minute < 10) "0$minute" else minute}"
 
 		(parentFragment as FragmentListener?)?.sendFromTimePickerFragment(time)
 		dismiss()

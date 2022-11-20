@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.CalendarView
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.fragment_calendar.*
 import expense.money.octo.R
+import kotlinx.android.synthetic.main.fragment_calendar.*
 
 class CalendarFragment : DialogFragment(R.layout.fragment_calendar) {
 
@@ -18,20 +18,11 @@ class CalendarFragment : DialogFragment(R.layout.fragment_calendar) {
 	}
 
 	private fun handleDateChange(year: Int, month: Int, day: Int) {
-		/** DEBUG
-		 * old: ++month
-		 * remarks: idk why the old code can modify lambda parameter (month)
-		 */
 		val theMonthAfter = month + 1
-		val date = """
-			${if (day < 10) "0$day" else day}/
-			${if (theMonthAfter < 10) "0$theMonthAfter" else theMonthAfter}/
-			$year
-		""".trimIndent()
-			.trimMargin()
-			.replace("\n", "")
+		val date = "${if (day < 10) "0$day" else day}/" +
+			"${if (theMonthAfter < 10) "0$theMonthAfter" else theMonthAfter}/" +
+			year
 
-		// listener
 		(parentFragment as FragmentListener?)?.sendFromCalendarFragment(date)
 
 		dismiss()

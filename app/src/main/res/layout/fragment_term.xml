@@ -33,18 +33,6 @@
 		app:layout_constraintStart_toStartOf="@+id/fmAboutUsName"
 		app:layout_constraintTop_toBottomOf="@+id/fmAboutUsName" />
 
-	<ImageView
-		android:id="@+id/fmAboutUsLogo"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		android:contentDescription="@string/about_us_logo"
-		android:scaleType="fitCenter"
-		android:src="@drawable/em88"
-		app:layout_constraintBottom_toTopOf="@+id/textView3"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/fmAboutUsDescription" />
-
 
 	<TextView
 		android:id="@+id/textView3"

@@ -35,6 +35,9 @@ class ExpenseAdapter(private var originalList: ArrayList<Expense>, private val f
 		holder.itemDateSpent.text = expense.dateSpent
 		holder.itemAmount.text = expense.amount.toString()
 		holder.itemType.text = expense.type.type
+
+		val currencyIcon = if (expense.currency == "USD") R.drawable.ic_dollar_sign else R.drawable.vietnam_dong
+		holder.itemIcon.setCompoundDrawablesWithIntrinsicBounds(currencyIcon, 0, holder.itemAmount.width, 0)
 	}
 
 	override fun getItemCount(): Int = filteredList.size
@@ -46,9 +49,11 @@ class ExpenseAdapter(private var originalList: ArrayList<Expense>, private val f
 		var itemType: TextView
 		var itemDateSpent: TextView
 		var itemAmount: TextView
+		var itemIcon: TextView
 
 		init {
 			itemType = itemView.findViewById(R.id.list_item_expense_type)
+			itemIcon = itemView.findViewById(R.id.list_item_expense_currency)
 			itemAmount = itemView.findViewById(R.id.list_item_expense_amount)
 			itemDateSpent = itemView.findViewById(R.id.list_item_expense_date_spent)
 			itemLayout = itemView.findViewById(R.id.layout_list_item_expense)

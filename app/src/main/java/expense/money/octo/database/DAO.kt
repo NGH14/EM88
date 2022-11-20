@@ -7,7 +7,6 @@ import expense.money.octo.models.Expense
 import expense.money.octo.models.ExpenseType
 import expense.money.octo.models.Trip
 
-// TODO: WIP rename variables
 @Suppress("unused", "SameParameterValue")
 class DAO(context: Context?) {
 
@@ -37,19 +36,12 @@ class DAO(context: Context?) {
 			val helper = SqlConditionHelper()
 
 			TripEntry.run {
-				helper.addCondition(COL_NAME, "%${trip.name}%", trip.name.trim().isNotEmpty())
-				helper.addCondition(COL_DATE_OF_TRIP, trip.dateOfTrip, trip.dateOfTrip.trim().isNotEmpty())
-				helper.addCondition(COL_DESTINATION, trip.destination, trip.destination.trim().isNotEmpty())
-				helper.addCondition(COL_DESCRIPTION, trip.description, trip.description.trim().isNotEmpty())
-				helper.addCondition(
-					COL_RISK_ASSESSMENT_REQUIRED,
-					trip.riskAssessmentRequired.toString(),
-					trip.riskAssessmentRequired
-				)
+				helper.addCondition(" AND COL_NAME LIKE ?", "%${trip.name}%", trip.name.trim().isNotEmpty())
+				helper.addCondition(" AND COL_DATE_OF_TRIP = ?", trip.dateOfTrip, trip.dateOfTrip.trim().isNotEmpty())
+				helper.addCondition(" AND COL_DESTINATION = ?", trip.destination, trip.destination.trim().isNotEmpty())
 			}
 
 			if (helper.selection.trim { it <= ' ' }.isNotEmpty()) selection = helper.selection.substring(5)
-
 			selectionArgs = helper.conditionList.toTypedArray()
 		}
 
@@ -178,6 +170,8 @@ class DAO(context: Context?) {
 		values.put(ExpenseEntry.COL_DATE_SPENT, expense.dateSpent)
 		values.put(ExpenseEntry.COL_CREATED_DATE, expense.createdDate)
 		values.put(ExpenseEntry.COL_TYPE, expense.type.ordinal)
+		values.put(ExpenseEntry.COL_CURRENCY, expense.currency)
+
 		values.put(ExpenseEntry.COL_AMOUNT, expense.amount)
 		values.put(ExpenseEntry.COL_COMMENT, expense.comment)
 
@@ -201,6 +195,7 @@ class DAO(context: Context?) {
 				Expense().apply {
 					id = cursor.getLong(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_ID))
 					type = ExpenseType.values()[cursor.getInt(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_TYPE))]
+					currency = cursor.getString(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_CURRENCY))
 					dateSpent = cursor.getString(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_DATE_SPENT))
 					createdDate = cursor.getString(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_CREATED_DATE))
 					comment = cursor.getString(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_COMMENT))
@@ -222,10 +217,10 @@ class DAO(context: Context?) {
 		var selection = superSelection
 		var conditionList = superConditionList
 
-		fun addCondition(col: String, str: String, addable: Boolean?) {
+		fun addCondition(sqlCond: String, sqlArgs: String, addable: Boolean?) {
 			if (addable != true) return
-			selection += " AND $col LIKE ?"
-			conditionList.add(str)
+			selection += sqlCond
+			conditionList.add(sqlArgs)
 		}
 	}
 }

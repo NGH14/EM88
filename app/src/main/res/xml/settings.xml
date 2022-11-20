@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		app:iconSpaceReserved="false"
+		app:title="Management Data">
 
-	<Preference
+		<Preference
+
+			app:icon="@drawable/ic_backup_rounded__2"
+			app:key="@string/preference_backup_key"
+			app:summary="Lorem ipsum dolor sit amet"
+			app:tint="@color/bg_dark"
+			app:title="Back Up" />
+		<Preference
+			app:icon="@drawable/ic_power_reset"
+			app:iconSpaceReserved="false"
+			app:key="@string/preference_reset_key"
+			app:summary="Lorem ipsum dolor sit amet consectetur"
+			app:title="Reset Data" />
+	</PreferenceCategory>
+
+	<PreferenceCategory
 		app:iconSpaceReserved="false"
-		app:key="@string/preference_backup_key"
-		app:summary="Lorem ipsum dolor sit amet"
-		app:title="Back up resima" />
-	<Preference
-		app:iconSpaceReserved="false"
-		app:key="@string/preference_reset_key"
-		app:summary="Lorem ipsum dolor sit amet consectetur"
-		app:title="Reset resima" />
-	<Preference
-		app:iconSpaceReserved="false"
+		app:title="Theme">
+
+	<SwitchPreference
+		app:icon="@drawable/dark_mode_rounded__1_"
+
 		app:key="@string/preference_dark_mode_key"
-		app:summary="Praesent quis porttitor dui. Integer est est, ullamcorper eget vehicula in, tempus at mauris. Nulla condimentum fermentum vulputate. In tempus augue ante, mollis hendrerit quam congue eget."
+		app:summary="Display setting for user interfaces."
 		app:title="Dark mode" />
+	</PreferenceCategory>
+
 	<Preference
 		app:iconSpaceReserved="false"
 		app:key="@string/preference_about_us_key"
 		app:summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 		app:title="About us" />
+	<Preference
+		app:iconSpaceReserved="false"
+		app:key="@string/preference_term_key"
+		app:summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+		app:title="Term"/>
 </PreferenceScreen>

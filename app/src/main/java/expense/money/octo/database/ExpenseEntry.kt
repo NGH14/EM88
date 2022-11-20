@@ -10,6 +10,7 @@ object ExpenseEntry {
 	const val COL_TYPE = "type"
 	const val COL_AMOUNT = "amount"
 	const val COL_TRIP_ID = "trip_id"
+	const val COL_CURRENCY = "currency"
 
 	const val SQL_DELETE_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
 	const val SQL_CREATE_TABLE = """
@@ -21,6 +22,8 @@ object ExpenseEntry {
 				$COL_TYPE INTEGER NOT NULL,
 				$COL_AMOUNT INTEGER NOT NULL,
 				$COL_TRIP_ID INTEGER NOT NULL,
+				$COL_CURRENCY TEXT NOT NULL,
+
 				FOREIGN KEY($COL_TRIP_ID) REFERENCES ${TripEntry.TABLE_NAME}(${TripEntry.COL_ID})
         )"""
 }

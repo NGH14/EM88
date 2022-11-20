@@ -14,6 +14,6 @@
 
 	<!-- TODO: renamed to be more appropriate -->
 	<color name="transparent">@android:color/transparent</color>
-	<color name="bg_dark">#111111</color>
+	<color name="bg_dark">#232122</color>
 	<color name="bg_light">#fff</color>
 </resources>

@@ -28,11 +28,18 @@
 			android:layout_width="0dp"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
-			android:drawablePadding="5dp"
 			android:gravity="center_vertical|end"
 			android:text="amount"
 			android:textSize="15sp"
-			app:drawableEndCompat="@drawable/ic_dollar_sign"
+			app:drawableTint="?android:textColor" />
+
+		<TextView
+			android:id="@+id/list_item_expense_currency"
+			android:layout_width="24dp"
+			android:layout_height="match_parent"
+			android:layout_marginStart="7dp"
+			android:gravity="center"
+			android:text=""
 			app:drawableTint="?android:textColor" />
 	</LinearLayout>
 

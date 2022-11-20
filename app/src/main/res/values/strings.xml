@@ -40,13 +40,13 @@
 	<string name="notification_reset_database_success">Reset database successfully.</string>
 	<string name="notification_update_fail">Not updated successfully.</string>
 	<string name="notification_update_success">Updated successfully.</string>
-	<string name="about_us_resima">RESIMA</string>
+	<string name="about_us_EM88">Expense Money 88</string>
 	<string name="about_us_name">Trip Management System</string>
 	<string name="about_us_copyright">Copyright © 2022 by Naovu a.k.a HuuNghia</string>
 	<string name="about_us_plhone">Phone: (+84) 96 2242 999</string>
-	<string name="about_us_email">Email: baohnp@fe.edu.vn</string>
+	<string name="about_us_email">Email: vuhuunghia2001@gmail.com</string>
 	<string name="about_us_disclaimer">This sample includes only basic features, no validation and no error handling.</string>
-	<string name="about_us_logo">australia scouts logo</string>
+	<string name="about_us_logo">Expense Money 88</string>
 
 	<string-array name="expense_type">
 		<item>Travel</item>
@@ -57,9 +57,16 @@
 		<item>Transport</item>
 	</string-array>
 
+	<string-array name="expense_currency">
+		<item>USD</item>
+		<item>VND</item>
+	</string-array>
+
 	<!-- preference keys -->
 	<string name="preference_backup_key">back_up_option</string>
 	<string name="preference_reset_key">reset_option</string>
 	<string name="preference_dark_mode_key">dark_mode_option</string>
 	<string name="preference_about_us_key">about_us_option</string>
+	<string name="preference_term_key">term_option</string>
+
 </resources>
