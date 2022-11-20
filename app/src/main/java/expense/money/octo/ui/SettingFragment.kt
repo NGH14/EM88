@@ -44,7 +44,6 @@ class SettingFragment : PreferenceFragmentCompat() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-
 		backupOption.setOnPreferenceClickListener { backup() }
 		resetOption.setOnPreferenceClickListener { resetDatabase() }
 		darkModeOption.setOnPreferenceClickListener { toggleAppTheme() }
