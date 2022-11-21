@@ -6,6 +6,7 @@
 	<com.google.android.material.textfield.TextInputLayout
 		android:id="@+id/text_input_layout"
 		style="@style/ExpenseMoney88.Input"
+
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 

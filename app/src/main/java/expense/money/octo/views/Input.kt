@@ -10,7 +10,10 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.core.view.get
 import androidx.core.view.setPadding
+import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout.EndIconMode
 import expense.money.octo.R
 import kotlinx.android.synthetic.main.view_input.view.*
 
@@ -37,6 +40,8 @@ class Input @JvmOverloads constructor(
 
 		_styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.Input, 0, 0)
 		_styledAttrs.run {
+			val endIconMode = getInt(R.styleable.Input_endIconMode, TextInputLayout.END_ICON_NONE)
+			val endIconDrawable = getDrawable(R.styleable.Input_endIconDrawable)
 			val text = getString(R.styleable.Input_text)
 			val textSize = getDimension(R.styleable.Input_android_textSize, 28F)
 			val paddingHorizontal = getDimension(R.styleable.Input_textPaddingHorizontal, 36F).toInt()
@@ -46,6 +51,9 @@ class Input @JvmOverloads constructor(
 			val placeholder = getString(R.styleable.Input_placeholderText)
 			val inputType = getInt(R.styleable.Input_android_inputType, InputType.TYPE_CLASS_TEXT)
 			val gravity = getInt(R.styleable.Input_android_gravity, Gravity.START or Gravity.CENTER_VERTICAL)
+
+			text_input_layout.endIconDrawable = endIconDrawable
+			text_input_layout.endIconMode = endIconMode
 
 			input_text.setText(text)
 			input_text.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)

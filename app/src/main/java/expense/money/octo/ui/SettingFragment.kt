@@ -27,7 +27,6 @@ class SettingFragment : PreferenceFragmentCompat() {
 	private lateinit var resetOption: Preference
 	private lateinit var darkModeOption: Preference
 	private lateinit var aboutUsOption: Preference
-	private lateinit var termOption: Preference
 
 	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 		setPreferencesFromResource(R.xml.settings, rootKey)
@@ -39,7 +38,6 @@ class SettingFragment : PreferenceFragmentCompat() {
 		resetOption = getOptionsView(R.string.preference_reset_key)
 		darkModeOption = getOptionsView(R.string.preference_dark_mode_key)
 		aboutUsOption = getOptionsView(R.string.preference_about_us_key)
-		termOption = getOptionsView(R.string.preference_term_key)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +46,6 @@ class SettingFragment : PreferenceFragmentCompat() {
 		resetOption.setOnPreferenceClickListener { resetDatabase() }
 		darkModeOption.setOnPreferenceClickListener { toggleAppTheme() }
 		aboutUsOption.setOnPreferenceClickListener { gotoAboutFragment() }
-		termOption.setOnPreferenceClickListener { gotoTermFragment() }
 	}
 
 	private fun gotoAboutFragment(): Boolean {

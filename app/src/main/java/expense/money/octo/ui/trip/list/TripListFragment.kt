@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ class TripListFragment : Fragment(R.layout.fragment_trip_list), TripSearchFragme
 		super.onViewCreated(view, savedInstanceState)
 
 		tripAdapter = TripAdapter(tripList)
+		(activity as AppCompatActivity).supportActionBar?.title = "List Business Trips"
 
 		listview_trip_list_trips.adapter = tripAdapter
 		listview_trip_list_trips.layoutManager = LinearLayoutManager(context)
@@ -37,7 +39,6 @@ class TripListFragment : Fragment(R.layout.fragment_trip_list), TripSearchFragme
 			listview_trip_list_trips.addItemDecoration(it)
 		}
 
-		button_trip_list_reset_search.setOnClickListener { resetSearch() }
 		button_trip_list_search.setOnClickListener { showSearchDialog() }
 		input_trip_list_filter.addTextChangedListener { filter() }
 		input_trip_list_filter.setOnKeyListener { _, keyCode, event ->
@@ -56,12 +57,8 @@ class TripListFragment : Fragment(R.layout.fragment_trip_list), TripSearchFragme
 		tripAdapter.updateList(tripList)
 
 		val listIsEmpty = tripList.isEmpty()
-
 		trip_list_empty_notice_text.visibility = if (listIsEmpty) View.VISIBLE else View.GONE
-
-		// reload the view to ensure adapter work appropriately
-		listview_trip_list_trips.visibility = View.GONE
-		if (!listIsEmpty) listview_trip_list_trips.visibility = View.VISIBLE
+		listview_trip_list_trips.visibility = if (listIsEmpty) View.GONE else View.VISIBLE
 	}
 
 	private fun filter(): TextWatcher {

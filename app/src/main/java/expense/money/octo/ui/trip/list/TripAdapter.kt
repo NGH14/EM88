@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import expense.money.octo.R
-import expense.money.octo.database.DAO
 import expense.money.octo.models.Trip
 import expense.money.octo.ui.trip.TripDetailFragment
 import java.util.*
@@ -28,14 +27,13 @@ class TripAdapter(private var originalList: ArrayList<Trip>) :
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val inflater = LayoutInflater.from(parent.context)
 		view = inflater.inflate(R.layout.list_item_trip, parent, false)
-
 		return ViewHolder(view)
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val trip = filteredList[position]
-		val requiredMessage = "Assessment: Required"
-		val notRequiredMessage = "Assessment: Not required"
+		val requiredMessage = "Risk Assessment"
+		val notRequiredMessage = ""
 
 		holder.itemName.text = trip.name
 		holder.itemDateOfTrip.text = trip.dateOfTrip
@@ -48,18 +46,11 @@ class TripAdapter(private var originalList: ArrayList<Trip>) :
 
 	override fun getFilter(): Filter = itemFilter
 
+	@SuppressLint("NotifyDataSetChanged")
 	fun updateList(list: ArrayList<Trip>) {
 		originalList = list
 		filteredList = list
-
-		notifyItemRangeChanged(1, list.size)
-	}
-
-	fun reload() {
-		val db = DAO(view.context)
-		val tripList = db.getTripList(null, null, false)
-
-		updateList(tripList)
+		notifyDataSetChanged()
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -106,12 +97,8 @@ class TripAdapter(private var originalList: ArrayList<Trip>) :
 			val results = FilterResults()
 			val pattern = constraint.toString().lowercase(Locale.getDefault()).trim()
 
-			reload()
-
 			for (trip in originalList) {
-				if (trip.toString().lowercase(Locale.getDefault()).contains(pattern)) {
-					filteredList.add(trip)
-				}
+				if (trip.toString().lowercase(Locale.getDefault()).contains(pattern)) filteredList.add(trip)
 			}
 
 			results.values = filteredList
@@ -123,10 +110,7 @@ class TripAdapter(private var originalList: ArrayList<Trip>) :
 		@Suppress("UNCHECKED_CAST")
 		@SuppressLint("NotifyDataSetChanged")
 		override fun publishResults(constraint: CharSequence, results: FilterResults) {
-			if (results.count == 0) return
-
-			adapter.filteredList.clear()
-			adapter.filteredList = results.values as ArrayList<Trip>
+			(results.values as? ArrayList<Trip>)?.let { adapter.filteredList = it }
 			notifyDataSetChanged()
 		}
 	}

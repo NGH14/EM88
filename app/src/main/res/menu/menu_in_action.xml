@@ -6,6 +6,6 @@
 		android:id="@+id/setting"
 		android:icon="@android:drawable/ic_menu_preferences"
 		android:title="@string/label_setting"
-		app:showAsAction="never" />
+		app:showAsAction="always" />
 
 </menu>

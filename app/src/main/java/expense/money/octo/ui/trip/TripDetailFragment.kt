@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -99,6 +100,7 @@ class TripDetailFragment :
 		fun setValue(tv: TextView, value: String?) {
 			tv.text = if (tripDetail == null || value == null) errorMessage else value
 		}
+		(activity as AppCompatActivity).supportActionBar?.title = tripDetail?.name
 
 		setValue(trip_detail_name, tripDetail?.name)
 		setValue(trip_detail_destination, tripDetail?.destination)

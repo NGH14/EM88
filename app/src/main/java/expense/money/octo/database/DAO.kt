@@ -36,9 +36,9 @@ class DAO(context: Context?) {
 			val helper = SqlConditionHelper()
 
 			TripEntry.run {
-				helper.addCondition(" AND COL_NAME LIKE ?", "%${trip.name}%", trip.name.trim().isNotEmpty())
-				helper.addCondition(" AND COL_DATE_OF_TRIP = ?", trip.dateOfTrip, trip.dateOfTrip.trim().isNotEmpty())
-				helper.addCondition(" AND COL_DESTINATION = ?", trip.destination, trip.destination.trim().isNotEmpty())
+				helper.addCondition(" AND $COL_NAME LIKE ?", "%${trip.name}%", trip.name.trim().isNotEmpty())
+				helper.addCondition(" AND $COL_DATE_OF_TRIP = ?", trip.dateOfTrip, trip.dateOfTrip.trim().isNotEmpty())
+				helper.addCondition(" AND $COL_DESTINATION = ?", trip.destination, trip.destination.trim().isNotEmpty())
 			}
 
 			if (helper.selection.trim { it <= ' ' }.isNotEmpty()) selection = helper.selection.substring(5)
@@ -189,8 +189,6 @@ class DAO(context: Context?) {
 		val cursor = dbRead.query(ExpenseEntry.TABLE_NAME, columns, selection, selectionArgs, groupBy, null, orderBy)
 
 		while (cursor.moveToNext()) {
-			val foo = cursor.getInt(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_AMOUNT))
-
 			list.add(
 				Expense().apply {
 					id = cursor.getLong(cursor.getColumnIndexOrThrow(ExpenseEntry.COL_ID))

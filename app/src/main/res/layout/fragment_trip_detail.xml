@@ -13,7 +13,18 @@
 		android:layout_height="match_parent"
 		android:padding="15dp">
 
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/poppins_semibold"
+			android:text="Trip Information"
+			android:textSize="21sp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
 		<ScrollView
+			android:layout_marginTop="44dp"
+
 			android:id="@+id/layout_linear_detail"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -185,6 +196,7 @@
 				<TextView
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
+					android:fontFamily="@font/poppins_semibold"
 					android:text="Expenses"
 					android:textSize="21sp"
 					app:layout_constraintBottom_toBottomOf="parent"

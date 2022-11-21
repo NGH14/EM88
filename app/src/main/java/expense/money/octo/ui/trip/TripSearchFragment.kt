@@ -25,7 +25,7 @@ class TripSearchFragment : DialogFragment(R.layout.fragment_trip_search), Calend
 
 		trip_search_button_cancel.setOnClickListener { dismiss() }
 		trip_search_button_search.setOnClickListener { search() }
-		trip_search_text_date_of_trip.setOnTouchListener { v, motionEvent ->
+		trip_search_text_date_of_trip.setInputOnTouchListener() { v, motionEvent ->
 			v.performClick()
 			showCalendar(motionEvent)
 		}

@@ -8,6 +8,8 @@
 		<item name="background">@color/bg_light</item>
 		<item name="android:textColor">@color/black</item>
 
+		<item name="actionBarTheme">@style/ExpenseMoney88.ActionBar.Theme</item>
+		<item name="actionBarStyle">@style/ExpenseMoney88.Widget.ActionBar</item>
 		<item name="preferenceTheme">@style/ExpenseMoney88.ref</item>
 
 		<!-- Primary brand color. -->
@@ -70,17 +72,25 @@
 
 
 	<style name="ExpenseMoney88.ref" parent="PreferenceThemeOverlay.v14.Material">
-		<item name="android:tint">@color/black</item>
+		<item name="android:tint">@color/black_777</item>
 		<item name="android:textSize">40px</item>
 		<item name="android:fontWeight">800</item>
-		<item name="preferenceCategoryStyle">@style/CustomPreferenceCategory</item>
+
+	</style>
+	<style name="ExpenseMoney88.ActionBar.Theme" parent="ThemeOverlay.AppCompat.ActionBar">
+		<!-- title text color -->
+		<item name="android:textColorPrimary">@color/purple_500</item>
+		<item name="fontFamily">@font/poppins_bold</item>
+
 
 	</style>
 
-	<style name="CustomPreferenceCategory" parent="@style/Preference.Category">
-		<item name="android:textSize">100px</item>
 
+	<style name="ExpenseMoney88.Widget.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+		<item name="background">@color/white</item>
+		<item name="elevation">0dp</item>
 	</style>
+
 
 <!--	<style name="ExpenseMoney88.ActionBar.Theme" parent="ThemeOverlay.AppCompat.ActionBar">-->
 <!--		&lt;!&ndash; title text color &ndash;&gt;-->

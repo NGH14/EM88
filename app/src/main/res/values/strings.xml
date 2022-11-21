@@ -41,9 +41,9 @@
 	<string name="notification_update_fail">Not updated successfully.</string>
 	<string name="notification_update_success">Updated successfully.</string>
 	<string name="about_us_EM88">Expense Money 88</string>
-	<string name="about_us_name">Trip Management System</string>
+	<string name="about_us_name">This project made with love and effort ❤</string>
 	<string name="about_us_copyright">Copyright © 2022 by Naovu a.k.a HuuNghia</string>
-	<string name="about_us_plhone">Phone: (+84) 96 2242 999</string>
+	<string name="about_us_plhone">Student ID: 001245121</string>
 	<string name="about_us_email">Email: vuhuunghia2001@gmail.com</string>
 	<string name="about_us_disclaimer">This sample includes only basic features, no validation and no error handling.</string>
 	<string name="about_us_logo">Expense Money 88</string>
